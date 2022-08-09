@@ -41,18 +41,23 @@ const App = () => {
 
 
 const Search = () => {
+
+  const [searchTerm, setSearchTerm] = React.useState('');
+
   const handleChange = (event) => {
-    console.log(event);
+    setSearchTerm(event.target.value);
   };
 
   return (
     <div>
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" onChange={handleChange} />
-    </div>
-  );
 
+      <p>Searching for <strong>{searchTerm}</strong>.</p> 
+    </div>
+  ); 
 };
+
 
 
 const List = (props) => (
@@ -61,7 +66,7 @@ const List = (props) => (
     {props.list.map((item) => (
 
     <Item key={item.objectID} item={item} />
-    
+
       /* <li key = {item.objectID}> 
         <span> <a href = {item.url} > {item.title}</a> </span>
         <span> {item.author} </span>

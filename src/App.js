@@ -30,7 +30,11 @@ const App = () => {
 
     <div>
       <h1> Hello {title} World </h1>
-    <List list = {stories} />
+
+      <Search />
+      <hr />
+      <List list = {stories} />
+
     </div>
   );
 };
@@ -56,12 +60,14 @@ const List = (props) => (
   <ul>
     {props.list.map((item) => (
 
-      <li key = {item.objectID}> 
+    <Item key={item.objectID} item={item} />
+    
+      /* <li key = {item.objectID}> 
         <span> <a href = {item.url} > {item.title}</a> </span>
         <span> {item.author} </span>
         <span> {item.num_comments} </span>
         <span> {item.points} </span>
-      </li>
+      </li>*/
 
     ))}
 

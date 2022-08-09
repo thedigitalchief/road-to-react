@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
 
+const title = "Road to React";
+
+const App = () => {
 
   const stories = [
     {
@@ -20,16 +22,62 @@ function App() {
       num_comments: 3,
       points: 4,
       objectID: 0,
-    },
 
-  ]
-  const title = "Road to React";
+    },
+  ];
+
   return (
 
     <div>
       <h1> Hello {title} World </h1>
+    <List list = {stories} />
     </div>
   );
-}
+};
+
+
+const Search = () => {
+  const handleChange = (event) => {
+    console.log(event);
+  };
+
+  return (
+    <div>
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" onChange={handleChange} />
+    </div>
+  );
+
+};
+
+
+const List = (props) => (
+
+  <ul>
+    {props.list.map((item) => (
+
+      <li key = {item.objectID}> 
+        <span> <a href = {item.url} > {item.title}</a> </span>
+        <span> {item.author} </span>
+        <span> {item.num_comments} </span>
+        <span> {item.points} </span>
+      </li>
+
+    ))}
+
+  </ul>
+);
+
+const Item = (props) => (
+  <li>
+    <span>
+      <a href={props.item.url}>{props.item.title}</a>
+    </span>
+    <span>{props.item.author}</span>
+    <span>{props.item.num_comments}</span>
+    <span>{props.item.points}</span>
+</li> );
+
+
 
 export default App;

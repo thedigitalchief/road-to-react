@@ -26,11 +26,20 @@ const App = () => {
     },
   ];
 
+// callback handler
+  // A
+  const handleSearch = (event) => {
+// C
+    console.log(event.target.value);
+  };
+
   return (
 
     <div>
       <h1> Hello {title} World </h1>
 
+        {/* // B */}
+      <Search onSearch={handleSearch} />
       <Search />
       <hr />
       <List list = {stories} />
@@ -47,6 +56,9 @@ const Search = () => {
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
+
+  // B
+  props.onSearch(event)
 
   return (
     <div>

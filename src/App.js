@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App = () => {
 
 
   const stories = [
@@ -22,12 +22,17 @@ function App() {
       objectID: 0,
     },
 
-  ]
+  ];
+
   const title = "Road to React";
+
   return (
 
     <div>
-      <h1> Hello {title} World </h1>
+      <h1> Hello {title} World
+      </h1>
+    <List list = {stories} />
+
     </div>
   );
 }

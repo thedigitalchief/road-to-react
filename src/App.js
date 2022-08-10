@@ -26,11 +26,12 @@ const App = () => {
     },
   ];
 
-// callback handler
+  const[searchTerm, setSearchTerm] = React.useState('');
+
+  // callback handler
   // A
   const handleSearch = (event) => {
-// C
-    console.log(event.target.value);
+      setSearchTerm(event.target.value);
   };
 
   return (
@@ -38,10 +39,11 @@ const App = () => {
     <div>
       <h1> Hello {title} World </h1>
 
-        {/* // B */}
+
       <Search onSearch={handleSearch} />
-      <Search />
+   
       <hr />
+
       <List list = {stories} />
 
     </div>
@@ -74,21 +76,10 @@ const Search = () => {
 
 const List = (props) => (
 
-  <ul>
-    {props.list.map((item) => (
-
-    <Item key={item.objectID} item={item} />
-
-      /* <li key = {item.objectID}> 
-        <span> <a href = {item.url} > {item.title}</a> </span>
-        <span> {item.author} </span>
-        <span> {item.num_comments} </span>
-        <span> {item.points} </span>
-      </li>*/
-
-    ))}
-
-  </ul>
+  <div>
+      <label htmlFor="search">Search: </label>
+      <input id = "search" type ="text" onChange = {props.onSearch} />
+  </div>
 );
 
 const Item = (props) => (

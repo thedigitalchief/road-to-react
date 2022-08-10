@@ -31,11 +31,12 @@ const App = () => {
     localStorage.getItem('search') || 'React' //using stored value, if it exsists, to set intial state of searchTerm in React's useState Hook
   );
 
-  // callback handler
-  const handleSearch = (event) => {
-      setSearchTerm(event.target.value);
+  React.useEffect(() => {
+    localStorage.setItem('search', searchTerm);
+  }, [searchTerm]);
 
-      localStorage.setItem('search', event.target.value); //so Search component can remember recent searches
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   const searchedStories = stories.filter((story) =>

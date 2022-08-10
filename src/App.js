@@ -2,8 +2,21 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
-
 const title = "Road to React";
+
+
+const useSemiPersistentState = (key, initialState) => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(key) || initialState
+);
+
+  React.useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [value, key]);
+
+  return [value, setValue];
+};
+
 
 const App = () => {
 
@@ -27,8 +40,9 @@ const App = () => {
     },
   ];
 
-  const[searchTerm, setSearchTerm] = React.useState(
-    localStorage.getItem('search') || 'React' //using stored value, if it exsists, to set intial state of searchTerm in React's useState Hook
+  const [searchTerm, setSearchTerm] = useSemiPersistentState(
+      'search',
+      'React'
   );
 
   React.useEffect(() => {

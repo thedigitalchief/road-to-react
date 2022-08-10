@@ -26,31 +26,64 @@ const App = () => {
     },
   ];
 
+
   const[searchTerm, setSearchTerm] = React.useState('');
 
   // callback handler
-  // A
   const handleSearch = (event) => {
       setSearchTerm(event.target.value);
   };
 
-  return (
+  const searchedStories = stories.filter(function (story) {
+    return story.title.includes(searchTerm);
+  });  
 
+  return (
     <div>
       <h1> Hello {title} World </h1>
-
 
       <Search onSearch={handleSearch} />
    
       <hr />
 
-      <List list = {stories} />
-
+      <List list = {searchedStories} />
     </div>
   );
 };
 
 
+const Search = (props) => (
+  <div>
+    <label htmlFor="search">Search: </label>
+    <input id="search" type="text" onChange={props.onSearch} />
+  </div> 
+);
+
+
+const List = (props) => (
+  <div>
+      <label htmlFor="search">Search: </label>
+      <input id = "search" type ="text" onChange = {props.onSearch} />
+  </div>
+);
+
+
+const Item = (props) => (
+  <li>
+    <span>
+      <a href={props.item.url}>{props.item.title}</a>
+    </span>
+    <span>{props.item.author}</span>
+    <span>{props.item.num_comments}</span>
+    <span>{props.item.points}</span>
+</li> );
+
+
+export default App;
+
+
+
+/*
 const Search = () => {
 
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -70,28 +103,5 @@ const Search = () => {
       <p>Searching for <strong>{searchTerm}</strong>.</p> 
     </div>
   ); 
-};
+}; */
 
-
-
-const List = (props) => (
-
-  <div>
-      <label htmlFor="search">Search: </label>
-      <input id = "search" type ="text" onChange = {props.onSearch} />
-  </div>
-);
-
-const Item = (props) => (
-  <li>
-    <span>
-      <a href={props.item.url}>{props.item.title}</a>
-    </span>
-    <span>{props.item.author}</span>
-    <span>{props.item.num_comments}</span>
-    <span>{props.item.points}</span>
-</li> );
-
-
-
-export default App;

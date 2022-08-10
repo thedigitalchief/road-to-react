@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
 
 const title = "Road to React";
@@ -26,58 +27,90 @@ const App = () => {
     },
   ];
 
-  return (
+  const[searchTerm, setSearchTerm] = React.useState(
+    localStorage.getItem('search') || 'React' //using stored value, if it exsists, to set intial state of searchTerm in React's useState Hook
+  );
 
+  React.useEffect(() => {
+    localStorage.setItem('search', searchTerm);
+  }, [searchTerm]);
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const searchedStories = stories.filter((story) =>
+      story.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );  
+
+  return (
     <div>
-      <h1> Hello {title} World </h1>
-    <List list = {stories} />
+      <h1>My Hacker Stories</h1>
+
+      <Search search={searchTerm} onSearch={handleSearch} />
+   
+      <hr />
+
+      <List list = {searchedStories} />
     </div>
   );
 };
 
 
+const Search = ({ search, onSearch }) => ( //destructuring the props object right away in the function signature of component
+  <div>
+    <label htmlFor="search">Search: </label>
+    <input
+      id="search"
+      type="text"
+      value={search} //basic destructing of the props object in a React component
+      onChange={onSearch} //so that the object's properties can be used more conviently
+/> </div>
+);
+
+
+const List = ({ list }) => (
+  <ul>
+      {list.map((item) => (
+        <Item key={item.objectID} item={item} />
+      ))}
+  </ul> 
+);
+
+const Item = ({ item }) => (
+  <li> 
+    <span>
+        <a href={item.url}>{item.title}</a>
+    </span>
+    <span>{item.author}</span>
+    <span>{item.num_comments}</span>
+    <span>{item.points}</span>
+  </li> 
+);
+
+export default App;
+
+
+
+/*
 const Search = () => {
+
+  const [searchTerm, setSearchTerm] = React.useState('');
+
   const handleChange = (event) => {
-    console.log(event);
+    setSearchTerm(event.target.value);
   };
+
+  // B
+  props.onSearch(event)
 
   return (
     <div>
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" onChange={handleChange} />
+
+      <p>Searching for <strong>{searchTerm}</strong>.</p> 
     </div>
-  );
+  ); 
+}; */
 
-};
-
-
-const List = (props) => (
-
-  <ul>
-    {props.list.map((item) => (
-
-      <li key = {item.objectID}> 
-        <span> <a href = {item.url} > {item.title}</a> </span>
-        <span> {item.author} </span>
-        <span> {item.num_comments} </span>
-        <span> {item.points} </span>
-      </li>
-
-    ))}
-
-  </ul>
-);
-
-const Item = (props) => (
-  <li>
-    <span>
-      <a href={props.item.url}>{props.item.title}</a>
-    </span>
-    <span>{props.item.author}</span>
-    <span>{props.item.num_comments}</span>
-    <span>{props.item.points}</span>
-</li> );
-
-
-
-export default App;

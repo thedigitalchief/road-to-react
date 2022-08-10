@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
 
 const title = "Road to React";
@@ -26,8 +27,7 @@ const App = () => {
     },
   ];
 
-
-  const[searchTerm, setSearchTerm] = React.useState('');
+  const[searchTerm, setSearchTerm] = React.useState('React');
 
   // callback handler
   const handleSearch = (event) => {
@@ -40,9 +40,9 @@ const App = () => {
 
   return (
     <div>
-      <h1> Hello {title} World </h1>
+      <h1>My Hacker Stories</h1>
 
-      <Search onSearch={handleSearch} />
+      <Search search={searchTerm} onSearch={handleSearch} />
    
       <hr />
 
@@ -52,13 +52,21 @@ const App = () => {
 };
 
 
-const Search = (props) => (
+const Search = (props) => {
+  const {search, onSearch} = props; //object destructuring
+
+  return (
   <div>
     <label htmlFor="search">Search: </label>
-    <input id="search" type="text" onChange={props.onSearch} />
-  </div> 
-);
-
+    <input
+      id="search"
+      type="text" 
+      value={search} //basic destructing of the props object in a React component
+      onChange={onSearch} //so that the object's properties can be used more conviently
+    /> 
+  </div>
+  );
+};
 
 const List = (props) => (
   <div>

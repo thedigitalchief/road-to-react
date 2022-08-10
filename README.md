@@ -1,4 +1,4 @@
-# My Road to React journey
+# Dylan Nguyen's Road to React Journey
 
 
 [![Build Status](https://travis-ci.org/the-road-to-learn-react/hackernews-client.svg?branch=master)](https://travis-ci.org/the-road-to-learn-react/hackernews-client)

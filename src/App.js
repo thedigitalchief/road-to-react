@@ -72,14 +72,15 @@ const App = () => {
 
 
 const Search = ({ search, onSearch }) => ( //destructuring the props object right away in the function signature of component
-  <div>
+  <>
     <label htmlFor="search">Search: </label>
     <input
       id="search"
       type="text"
       value={search} //basic destructing of the props object in a React component
       onChange={onSearch} //so that the object's properties can be used more conviently
-/> </div>
+    /> 
+  </>
 );
 
 
@@ -102,7 +103,11 @@ const Item = ({ item }) => (
   </li> 
 );
 
+
 export default App;
+
+
+
 
 
 

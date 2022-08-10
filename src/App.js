@@ -72,7 +72,9 @@ const App = () => {
 
 
 const Search = ({ search, onSearch }) => ( //destructuring the props object right away in the function signature of component
-  <>
+  // fragments: wraps other elements into a single top-evel element w/o adding to rendered output
+  // can use <React.Fragment></React.Fragment>
+  <> 
     <label htmlFor="search">Search: </label>
     <input
       id="search"

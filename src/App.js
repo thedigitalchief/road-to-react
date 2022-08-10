@@ -52,7 +52,7 @@ const App = () => {
 };
 
 
-const Search = ({ search, onSearch }) => (
+const Search = ({ search, onSearch }) => ( //destructuring the props object right away in the function signature of component
   <div>
     <label htmlFor="search">Search: </label>
     <input
@@ -64,24 +64,24 @@ const Search = ({ search, onSearch }) => (
 );
 
 
-const List = (props) => (
-  <div>
-      <label htmlFor="search">Search: </label>
-      <input id = "search" type ="text" onChange = {props.onSearch} />
-  </div>
+const List = ({ list }) => (
+  <ul>
+      {list.map((item) => (
+        <Item key={item.objectID} item={item} />
+      ))}
+  </ul> 
 );
 
-
-const Item = (props) => (
-  <li>
+const Item = ({ item }) => (
+  <li> 
     <span>
-      <a href={props.item.url}>{props.item.title}</a>
+        <a href={item.url}>{item.title}</a>
     </span>
-    <span>{props.item.author}</span>
-    <span>{props.item.num_comments}</span>
-    <span>{props.item.points}</span>
-</li> );
-
+    <span>{item.author}</span>
+    <span>{item.num_comments}</span>
+    <span>{item.points}</span>
+  </li> 
+);
 
 export default App;
 

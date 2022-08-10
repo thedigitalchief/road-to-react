@@ -52,21 +52,17 @@ const App = () => {
 };
 
 
-const Search = (props) => {
-  const {search, onSearch} = props; //object destructuring
-
-  return (
+const Search = ({ search, onSearch }) => (
   <div>
     <label htmlFor="search">Search: </label>
     <input
       id="search"
-      type="text" 
+      type="text"
       value={search} //basic destructing of the props object in a React component
       onChange={onSearch} //so that the object's properties can be used more conviently
-    /> 
-  </div>
-  );
-};
+/> </div>
+);
+
 
 const List = (props) => (
   <div>
